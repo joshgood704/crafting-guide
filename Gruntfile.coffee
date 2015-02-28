@@ -43,12 +43,6 @@ module.exports = (grunt)->
             build: ['./build']
 
         copy:
-            data_json:
-                files: [expand:true, cwd:'./src/data', src:'**/*.json', dest:'./dist/data']
-            data_cg:
-                files: [expand:true, cwd:'./src/data', src:'**/*.cg', dest:'./dist/data']
-            data_images:
-                files: [expand:true, cwd:'./src/data', src:'**/*.png', dest:'./dist/data']
             fonts:
                 files: [expand:true, cwd:'./src/fonts', src:['**/*.ttf', '**/*.woff'], dest:'./dist/fonts']
             images:
@@ -134,15 +128,6 @@ module.exports = (grunt)->
                 ]
 
         watch:
-            data_json:
-                files: ['./src/data/**/*.json']
-                tasks: ['copy:data_json']
-            data_cg:
-                files: ['./src/data/**/*.cg']
-                tasks: ['copy:data_cg']
-            data_images:
-                files: ['./src/data/**/*.png']
-                tasks: ['copy:data_images']
             fonts:
                 files: ['./src/fonts/**/*']
                 tasks: ['copy:fonts']
