@@ -54,14 +54,25 @@ ModelState.failed   = 'failed'
 exports.Text = Text = {}
 Text.title = 'Crafting Guide for Minecraft | The Ultimate Step-by-Step Tutorial for Making Anything in Minecraft'
 
+switch global.env
+    when 'development'
+        siteUrl = 'http://localhost:8000'
+        dataUrl = 'http://localhost:8000'
+    when 'staging'
+        siteUrl = 'http://new.crafting-guide.com'
+        dataUrl = 'http://andrewminer.github.io/crafting-guide-data'
+    when 'production'
+        siteUrl = 'http://crafting-guide.com'
+        dataUrl = 'http://andrewminer.github.io/crafting-guide-data'
+
 exports.Url      = Url = {}
-Url.crafting     = _.template "/crafting/<%= inventoryText %>"
-Url.itemIcon     = _.template "/data/<%= modSlug %>/<%= modVersion %>/images/<%= itemSlug %>.png"
-Url.item         = _.template "/mod/<%= modSlug %>/<%= itemSlug %>"
-Url.mod          = _.template "/mod/<%= modSlug %>"
-Url.modData      = _.template "/data/<%= modSlug %>/mod.cg"
-Url.modVersion   = _.template "/data/<%= modSlug %>/<%= modVersion %>/mod-version.cg"
-Url.modLogoImage = _.template "/data/<%= modSlug %>/logo.png"
+Url.crafting     = _.template "#{siteUrl}/crafting/<%= inventoryText %>"
+Url.itemIcon     = _.template "#{dataUrl}/<%= modSlug %>/<%= modVersion %>/images/<%= itemSlug %>.png"
+Url.item         = _.template "#{siteUrl}/mod/<%= modSlug %>/<%= itemSlug %>"
+Url.mod          = _.template "#{siteUrl}/mod/<%= modSlug %>"
+Url.modData      = _.template "#{dataUrl}/<%= modSlug %>/mod.cg"
+Url.modVersion   = _.template "#{dataUrl}}/<%= modSlug %>/<%= modVersion %>/mod-version.cg"
+Url.modLogoImage = _.template "#{dataUrl}/<%= modSlug %>/logo.png"
 
 exports.UrlParam        = UrlParam = {}
 UrlParam.quantity       = 'count'
