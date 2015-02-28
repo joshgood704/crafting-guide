@@ -5,39 +5,45 @@ Copyright (c) 2014-2015 by Redwood Labs
 All rights reserved.
 ###
 
-require './underscore_mixins'
-require './polyfill'
-
-views               = require './views'
-FeedbackController  = require './controllers/feedback_controller'
-Logger              = require './logger'
-CraftingGuideRouter = require './crafting_guide_router'
-
-########################################################################################################################
+# Define Global ########################################################################################################
 
 if typeof(global) is 'undefined'
     window.global = window
     global = window.global
 
-global.logger = new Logger
+# Define Env ###########################################################################################################
 
 switch window.location.hostname
-    when 'localhost'
-        global.env = 'development'
-        logger.level = Logger.DEBUG
-    when 'new.crafting-guide.com'
-        global.env = 'staging'
-        logger.level = Logger.VERBOSE
-    when 'crafting-guide.com'
-        global.env = 'production'
-        logger.level = Logger.INFO
+    when 'localhost'              then global.env = 'development'
+    when 'new.crafting-guide.com' then global.env = 'staging'
+    when 'crafting-guide.com'     then global.env = 'production'
+    else throw new Error "Cannot identify environment of #{window.location.hostname}"
 
-global.router = new CraftingGuideRouter
-global.util   = require 'util'
-global.views  = views
+# Global Includes ######################################################################################################
 
+require './underscore_mixins'
+require './polyfill'
+
+# Global Variables #####################################################################################################
+
+Logger        = require './logger'
+global.logger = new Logger
+switch global.env
+    when 'localhost'  then logger.level = Logger.DEBUG
+    when 'staging'    then logger.level = Logger.VERBOSE
+    when 'production' then logger.level = Logger.INFO
+
+CraftingGuideRouter = require './crafting_guide_router'
+global.router       = new CraftingGuideRouter
+
+global.util         = require 'util'
+global.views        = require './views'
+
+FeedbackController        = require './controllers/feedback_controller'
 global.feedbackController = new FeedbackController el:'.view__feedback'
 feedbackController.render()
+
+# Start App ############################################################################################################
 
 global.router.loadDefaultModPack()
 

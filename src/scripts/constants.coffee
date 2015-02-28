@@ -57,13 +57,15 @@ Text.title = 'Crafting Guide for Minecraft | The Ultimate Step-by-Step Tutorial 
 switch global.env
     when 'development'
         siteUrl = 'http://localhost:8000'
-        dataUrl = 'http://localhost:8000'
+        dataUrl = 'http://localhost:8000/data'
     when 'staging'
         siteUrl = 'http://new.crafting-guide.com'
         dataUrl = 'http://andrewminer.github.io/crafting-guide-data'
     when 'production'
         siteUrl = 'http://crafting-guide.com'
         dataUrl = 'http://andrewminer.github.io/crafting-guide-data'
+    else
+        throw new Error "unknown env: #{global.env}"
 
 exports.Url      = Url = {}
 Url.crafting     = _.template "#{siteUrl}/crafting/<%= inventoryText %>"
@@ -71,7 +73,7 @@ Url.itemIcon     = _.template "#{dataUrl}/<%= modSlug %>/<%= modVersion %>/image
 Url.item         = _.template "#{siteUrl}/mod/<%= modSlug %>/<%= itemSlug %>"
 Url.mod          = _.template "#{siteUrl}/mod/<%= modSlug %>"
 Url.modData      = _.template "#{dataUrl}/<%= modSlug %>/mod.cg"
-Url.modVersion   = _.template "#{dataUrl}}/<%= modSlug %>/<%= modVersion %>/mod-version.cg"
+Url.modVersion   = _.template "#{dataUrl}/<%= modSlug %>/<%= modVersion %>/mod-version.cg"
 Url.modLogoImage = _.template "#{dataUrl}/<%= modSlug %>/logo.png"
 
 exports.UrlParam        = UrlParam = {}

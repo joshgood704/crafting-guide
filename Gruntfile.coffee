@@ -53,12 +53,12 @@ module.exports = (grunt)->
                 files: [expand:true, cwd:'./src/pages', src:['**/*.html', '**/*.txt'], dest:'./dist']
             scripts:
                 files:
-                    './dist/js/backbone.js': ['./node_modules/backbone/backbone.js']
-                    './dist/js/chai.js': ['./node_modules/chai/chai.js']
-                    './dist/js/jade.js': ['./node_modules/jade/runtime.js']
-                    './dist/js/jquery.js': ['./node_modules/jquery/dist/jquery.js']
-                    './dist/js/jquery-ui.js': ['./lib/jquery-ui/jquery-ui.js']
-                    './dist/js/mocha.js': ['./node_modules/mocha/mocha.js']
+                    './dist/js/backbone.js':   ['./node_modules/backbone/backbone.js']
+                    './dist/js/chai.js':       ['./node_modules/chai/chai.js']
+                    './dist/js/jade.js':       ['./node_modules/jade/runtime.js']
+                    './dist/js/jquery.js':     ['./node_modules/jquery/dist/jquery.js']
+                    './dist/js/jquery-ui.js':  ['./lib/jquery-ui/jquery-ui.js']
+                    './dist/js/mocha.js':      ['./node_modules/mocha/mocha.js']
                     './dist/js/underscore.js': ['./node_modules/underscore/underscore.js']
             styles:
                 files: [expand:true, cwd:'./src/css', src:'**/*.scss', dest:'./dist/src/css']
