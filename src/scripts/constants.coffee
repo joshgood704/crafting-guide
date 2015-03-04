@@ -11,10 +11,10 @@ exports.DefaultMods = [
     'applied_energistics_2',
     'buildcraft',
     'enderio',
+    'forestry',
     'industrial_craft_2',
     'railcraft',
-    'thermal_expansion',
-    'forestry'
+    'thermal_expansion'
 ]
 
 exports.Duration = Duration = {}
